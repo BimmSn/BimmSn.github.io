@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kegiatan Bimo - Starry Night</title>
+
+    <style>
+        /* ===== RESET DASAR ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            min-height: 100vh;
+            padding: 35px 15px;
+            color: #fff4c2;
+
+            /* Background Starry Night */
+            background-color: #10265c;
+            background-image:
+                radial-gradient(circle at 12% 12%,
+                    #fff4a0 0 3px, #e9c94d 5px,
+                    transparent 18px),
+                radial-gradient(circle at 82% 10%,
+                    #ffe77a 0 5px, #d8b43c 7px,
+                    transparent 23px),
+                radial-gradient(circle at 35% 28%,
+                    #fff2a0 0 3px, #d8b94b 5px,
+                    transparent 19px),
+                radial-gradient(circle at 70% 45%,
+                    #ffe58a 0 3px, #d8b94b 5px,
+                    transparent 17px),
+                repeating-radial-gradient(
+                    ellipse at 55% 25%,
+                    transparent 0 18px,
+                    rgba(115, 165, 230, 0.3) 20px 24px,
+                    transparent 27px 40px
+                ),
+                linear-gradient(
+                    160deg,
+                    #14275f,
+                    #244d91 45%,
+                    #0b1741
+                );
+
+            background-attachment: fixed;
+        }
+
+        /* ===== KOTAK UTAMA ===== */
+        .website {
+            width: 100%;
+            max-width: 1050px;
+            margin: auto;
+            overflow: hidden;
+
+            background: rgba(9, 24, 64, 0.95);
+            border: 2px solid #d9bd59;
+            border-radius: 25px;
+
+            box-shadow:
+                0 0 20px rgba(255, 220, 100, 0.3),
+                0 0 45px rgba(52, 105, 210, 0.4),
+                0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+
+            background:
+                repeating-radial-gradient(
+                    ellipse at 50% 0%,
+                    transparent 0 25px,
+                    rgba(111, 155, 222, 0.12) 27px 31px,
+                    transparent 33px 48px
+                ),
+                linear-gradient(135deg, #152b66, #244d8a);
+
+            border-bottom: 2px solid #c7ad54;
+        }
+
+        .moon {
+            display: block;
+            font-size: 40px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 12px #ffe77a);
+        }
+
+        header h1 {
+            color: #fff4a8;
+            font-size: clamp(30px, 5vw, 48px);
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+
+            text-shadow:
+                2px 3px 0 #243d77,
+                0 0 8px #ffe66d,
+                0 0 20px #ffd84d,
+                0 0 35px #d6ad32;
+        }
+
+        header p {
+            color: #e4eaff;
+            font-size: 14px;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        /* ===== MENU NAVIGASI ===== */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 18px;
+
+            background: #0a1942;
+            border-bottom: 1px solid rgba(255, 231, 122, 0.35);
+        }
+
+        nav a {
+            color: #ffe99a;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+
+            padding: 11px 19px;
+            border-radius: 25px;
+            border: 1px solid #a9944b;
+
+            transition: 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: linear-gradient(135deg, #fff0a0, #d9b642);
+            color: #10265c;
+            box-shadow: 0 0 15px rgba(255, 231, 122, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* ===== JUDUL HALAMAN ===== */
+        .page-title {
+            text-align: center;
+            padding: 35px 20px 15px;
+        }
+
+        .page-title .label {
+            display: block;
+            color: #ffe58a;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .page-title h2 {
+            color: #fff0a0;
+            font-size: clamp(25px, 4vw, 36px);
+            line-height: 1.4;
+            text-shadow:
+                0 0 10px rgba(255, 216, 91, 0.4),
+                0 0 25px rgba(255, 216, 91, 0.15);
+        }
+
+        .page-title p {
+            color: #cbd9ff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-top: 12px;
+        }
+
+        /* ===== AREA KEGIATAN ===== */
+        .activities {
+            padding: 20px 30px 35px;
+        }
+
+        /* ===== KARTU KEGIATAN ===== */
+        .activity-card {
+            padding: 25px;
+            margin-bottom: 25px;
+
+            background: linear-gradient(
+                145deg,
+                rgba(28, 57, 117, 0.96),
+                rgba(16, 31, 75, 0.98)
+            );
+
+            border: 1px solid rgba(255, 224, 125, 0.4);
+            border-radius: 20px;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-4px);
+            border-color: #ffe77a;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(255, 220, 100, 0.12);
+        }
+
+        .activity-card h3 {
+            color: #ffe58a;
+            font-size: 23px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+            text-shadow: 0 0 10px rgba(255, 216, 91, 0.25);
+        }
+
+        .activity-card p {
+            color: #e4eaff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.9;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* ===== FOTO KEGIATAN ===== */
+        .activity-image {
+            display: block;
+            width: 100%;
+            max-width: 650px;
+            max-height: 430px;
+
+            object-fit: contain;
+            margin: 0 auto 22px;
+
+            border: 2px solid rgba(255, 224, 125, 0.65);
+            border-radius: 16px;
+
+            box-shadow:
+                0 0 12px rgba(255, 220, 100, 0.15),
+                0 8px 20px rgba(0, 0, 0, 0.3);
+
+            transition: 0.3s ease;
+        }
+
+        .activity-image:hover {
+            border-color: #ffe77a;
+            box-shadow: 0 0 20px rgba(255, 220, 100, 0.35);
+        }
+
+        /* ===== LABEL KEGIATAN ===== */
+        .activity-tag {
+            display: inline-block;
+            padding: 8px 14px;
+            margin-bottom: 15px;
+
+            color: #152858;
+            background: linear-gradient(135deg, #fff0a0, #d9b642);
+
+            border-radius: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+
+            color: #d4dcf2;
+            background: #08132f;
+            border-top: 2px solid #bba54d;
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        footer strong {
+            color: #ffe9a0;
+            text-shadow: 0 0 10px rgba(255, 220, 100, 0.5);
+        }
+
+        /* ===== RESPONSIVE HP ===== */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .website {
+                border-radius: 18px;
+            }
+
+            header {
+                padding: 30px 15px;
+            }
+
+            header h1 {
+                letter-spacing: 1px;
+            }
+
+            header p {
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+
+            nav {
+                gap: 7px;
+                padding: 15px 8px;
+            }
+
+            nav a {
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+
+            .activities {
+                padding: 15px;
+            }
+
+            .activity-card {
+                padding: 18px;
+            }
+
+            .activity-card h3 {
+                font-size: 20px;
+            }
+
+            .activity-card p {
+                font-size: 13px;
+            }
+
+            .page-title {
+                padding-top: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="website">
+
+        <!-- HEADER -->
+        <header>
+            <span class="moon">🌙</span>
+
+            <h1>Website Bimo</h1>
+
+            <p>✦ Carilah Rumah Ternyamanmu ✦</p>
+        </header>
+
+        <!-- MENU NAVIGASI -->
+        <nav>
+            <a href="index.html">⌂ Beranda</a>
+            <a href="profil.html">✧ Profil</a>
+            <a href="kegiatan.html" class="active">✦ Kegiatan</a>
+            <a href="kontak.html">☾ Kontak</a>
+        </nav>
+
+        <!-- JUDUL HALAMAN -->
+        <section class="page-title">
+
+            <span class="label">✦ CERITA DI SEKOLAH ✦</span>
+
+            <h2>Kegiatan Sekolah SMKN 1 Tangerang</h2>
+
+            <p>
+                Momen kebersamaan, kreativitas, dan semangat
+                siswa dalam berbagai kegiatan sekolah.
+            </p>
+
+        </section>
+
+        <!-- DAFTAR KEGIATAN -->
+        <main class="activities">
+
+            <!-- KEGIATAN 1 -->
+            <article class="activity-card">
+
+                <span class="activity-tag">
+                    🎨 Seni dan Kreativitas
+                </span>
+
+                <h3>✦ Gelar Apresiasi dan Kreasi Siswa</h3>
+
+                <img
+                    src="apresg.jpeg"
+                    alt="Kegiatan Gelar Apresiasi dan Kreasi Siswa"
+                    class="activity-image"
+                >
+
+                <p>
+                    Kegiatan pada setiap hari Kamis di NESTA
+                    yaitu apresiasi. Pendidikan sejatinya tidak
+                    hanya diukur dari pencapaian akademis di
+                    dalam ruang kelas, melainkan juga dari
+                    bagaimana seorang individu mampu menemukan,
+                    mengasah, dan mengekspresikan potensi terbaik
+                    yang ada di dalam dirinya.
+                </p>
+
+                <p>
+                    Sebagai bentuk komitmen dalam mendukung
+                    perkembangan peserta didik, sekolah
+                    menyelenggarakan kegiatan bertajuk
+                    "Gelar Apresiasi dan Kreasi Siswa".
+                    Acara ini menjadi ruang bagi para siswa
+                    untuk menampilkan kreativitas, minat,
+                    bakat, serta hasil kerja keras mereka.
+                </p>
+
+                <p>
+                    Melalui kegiatan ini, siswa dapat belajar
+                    menghargai karya orang lain, meningkatkan
+                    rasa percaya diri, dan mengembangkan potensi
+                    yang dimiliki dalam suasana yang positif.
+                </p>
+
+            </article>
+
+            <!-- KEGIATAN 2 -->
+            <article class="activity-card">
+
+                <span class="activity-tag">
+                    🇮🇩 Nasionalisme dan Kebersamaan
+                </span>
+
+                <h3>✦ Peringatan Hari Kemerdekaan Indonesia</h3>
+
+                <img
+                    src="IMG_20260813_073140.jpg"
+                    alt="Dokumentasi kegiatan peringatan kemerdekaan di sekolah"
+                    class="activity-image"
+                >
+
+                <p>
+                    Peringatan Hari Ulang Tahun Kemerdekaan
+                    Republik Indonesia di lingkungan sekolah
+                    berlangsung dengan tertib, khidmat, dan
+                    penuh antusiasme.
+                </p>
+
+                <p>
+                    Berbagai perlombaan yang diselenggarakan
+                    bukan semata-mata sebagai ajang rekreasi,
+                    melainkan juga sebagai sarana pendidikan
+                    karakter bagi para siswa.
+                </p>
+
+                <p>
+                    Melalui kompetisi yang membutuhkan
+                    ketangkasan dan kerja sama, seluruh warga
+                    sekolah diajak untuk menerapkan nilai-nilai
+                    gotong royong, sportivitas, serta semangat
+                    pantang menyerah. Kegiatan ini diharapkan
+                    dapat memperkokoh rasa nasionalisme,
+                    mempererat persaudaraan, dan melatih daya
+                    juang generasi muda.
+                </p>
+
+            </article>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>
+                ✦ Dibuat dengan ♥ oleh
+                <strong>bimmvdrxsn</strong> ✦
+            </p>
+
+            <p>© 2026 Website Bimo. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
+```

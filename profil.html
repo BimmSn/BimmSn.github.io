@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profil Bimo - Starry Night</title>
+
+    <style>
+        /* ===== RESET DASAR ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            min-height: 100vh;
+            padding: 35px 15px;
+            color: #fff4c2;
+
+            /* Background langit Starry Night */
+            background-color: #10265c;
+            background-image:
+                radial-gradient(circle at 12% 12%,
+                    #fff4a0 0 3px, #e9c94d 5px,
+                    transparent 18px),
+                radial-gradient(circle at 82% 10%,
+                    #ffe77a 0 5px, #d8b43c 7px,
+                    transparent 23px),
+                radial-gradient(circle at 35% 28%,
+                    #fff2a0 0 3px, #d8b94b 5px,
+                    transparent 19px),
+                radial-gradient(circle at 70% 45%,
+                    #ffe58a 0 3px, #d8b94b 5px,
+                    transparent 17px),
+                repeating-radial-gradient(
+                    ellipse at 55% 25%,
+                    transparent 0 18px,
+                    rgba(115, 165, 230, 0.3) 20px 24px,
+                    transparent 27px 40px
+                ),
+                linear-gradient(
+                    160deg,
+                    #14275f,
+                    #244d91 45%,
+                    #0b1741
+                );
+
+            background-attachment: fixed;
+        }
+
+        /* ===== KOTAK WEBSITE ===== */
+        .website {
+            width: 100%;
+            max-width: 1050px;
+            margin: auto;
+            overflow: hidden;
+
+            background: rgba(9, 24, 64, 0.95);
+            border: 2px solid #d9bd59;
+            border-radius: 25px;
+
+            box-shadow:
+                0 0 20px rgba(255, 220, 100, 0.3),
+                0 0 45px rgba(52, 105, 210, 0.4),
+                0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+
+            background:
+                repeating-radial-gradient(
+                    ellipse at 50% 0%,
+                    transparent 0 25px,
+                    rgba(111, 155, 222, 0.12) 27px 31px,
+                    transparent 33px 48px
+                ),
+                linear-gradient(135deg, #152b66, #244d8a);
+
+            border-bottom: 2px solid #c7ad54;
+        }
+
+        .moon {
+            display: block;
+            font-size: 40px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 12px #ffe77a);
+        }
+
+        header h1 {
+            color: #fff4a8;
+            font-size: clamp(30px, 5vw, 48px);
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+
+            text-shadow:
+                2px 3px 0 #243d77,
+                0 0 8px #ffe66d,
+                0 0 20px #ffd84d,
+                0 0 35px #d6ad32;
+        }
+
+        header p {
+            color: #e4eaff;
+            font-size: 14px;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        /* ===== NAVIGASI ===== */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 18px;
+
+            background: #0a1942;
+            border-bottom: 1px solid rgba(255, 231, 122, 0.35);
+        }
+
+        nav a {
+            color: #ffe99a;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+
+            padding: 11px 19px;
+            border-radius: 25px;
+            border: 1px solid #a9944b;
+
+            transition: 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: linear-gradient(135deg, #fff0a0, #d9b642);
+            color: #10265c;
+            box-shadow: 0 0 15px rgba(255, 231, 122, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* ===== AREA PROFIL ===== */
+        .profile-section {
+            padding: 40px 25px 50px;
+            text-align: center;
+            background:
+                radial-gradient(
+                    ellipse at top,
+                    rgba(48, 83, 150, 0.3),
+                    transparent 70%
+                );
+        }
+
+        .section-label {
+            display: inline-block;
+            color: #ffe58a;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .profile-section h2 {
+            color: #fff0a0;
+            font-size: clamp(28px, 5vw, 38px);
+            margin-bottom: 12px;
+
+            text-shadow:
+                0 0 10px rgba(255, 216, 91, 0.4),
+                0 0 25px rgba(255, 216, 91, 0.15);
+        }
+
+        .intro {
+            color: #cbd9ff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* ===== FOTO PROFIL ===== */
+        .profile-photo {
+            width: 210px;
+            height: 210px;
+            object-fit: cover;
+            object-position: center;
+
+            padding: 6px;
+            border: 2px solid #ffe58a;
+            border-radius: 50%;
+
+            background: linear-gradient(135deg, #fff0a0, #4263c7);
+
+            box-shadow:
+                0 0 12px rgba(255, 231, 122, 0.65),
+                0 0 30px rgba(255, 216, 77, 0.25),
+                0 0 50px rgba(69, 117, 255, 0.3);
+
+            margin-bottom: 25px;
+            transition: 0.4s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.04);
+            box-shadow:
+                0 0 20px rgba(255, 231, 122, 0.85),
+                0 0 40px rgba(255, 216, 77, 0.4);
+        }
+
+        /* ===== NAMA DAN DESKRIPSI ===== */
+        .profile-name {
+            color: #ffffff;
+            font-size: 27px;
+            margin-bottom: 10px;
+
+            text-shadow:
+                0 0 8px #80aaff,
+                0 0 18px rgba(88, 137, 255, 0.5);
+        }
+
+        .profile-role {
+            display: inline-block;
+            color: #152858;
+            background: linear-gradient(135deg, #fff0a0, #d9b642);
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+
+            padding: 9px 20px;
+            border-radius: 25px;
+            margin-bottom: 28px;
+        }
+
+        /* ===== KARTU TENTANG SAYA ===== */
+        .about-card {
+            max-width: 720px;
+            margin: 0 auto 25px;
+            padding: 28px;
+
+            text-align: left;
+            background: linear-gradient(
+                145deg,
+                rgba(28, 57, 117, 0.96),
+                rgba(16, 31, 75, 0.98)
+            );
+
+            border: 1px solid rgba(255, 224, 125, 0.4);
+            border-radius: 20px;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-card h3 {
+            color: #ffe58a;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .about-card p {
+            color: #e4eaff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.9;
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        .about-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== KEAHLIAN ===== */
+        .skills {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 28px;
+
+            text-align: left;
+            background: rgba(10, 25, 66, 0.75);
+            border: 1px solid rgba(143, 174, 255, 0.35);
+            border-radius: 20px;
+        }
+
+        .skills h3 {
+            color: #ffe58a;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill {
+            color: #dce7ff;
+            background: #1b3976;
+            border: 1px solid rgba(255, 224, 125, 0.4);
+            border-radius: 25px;
+
+            padding: 11px 16px;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+
+            transition: 0.3s ease;
+        }
+
+        .skill:hover {
+            color: #172653;
+            background: #ffe58a;
+            transform: translateY(-3px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+
+            color: #d4dcf2;
+            background: #08132f;
+            border-top: 2px solid #bba54d;
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        footer strong {
+            color: #ffe9a0;
+            text-shadow: 0 0 10px rgba(255, 220, 100, 0.5);
+        }
+
+        /* ===== RESPONSIVE HP ===== */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .website {
+                border-radius: 18px;
+            }
+
+            header {
+                padding: 30px 15px;
+            }
+
+            header h1 {
+                letter-spacing: 1px;
+            }
+
+            header p {
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+
+            nav {
+                gap: 7px;
+                padding: 15px 8px;
+            }
+
+            nav a {
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+
+            .profile-section {
+                padding: 30px 15px;
+            }
+
+            .profile-photo {
+                width: 175px;
+                height: 175px;
+            }
+
+            .profile-name {
+                font-size: 23px;
+            }
+
+            .about-card,
+            .skills {
+                padding: 20px;
+            }
+
+            .about-card p {
+                font-size: 13px;
+            }
+
+            .skill-list {
+                gap: 8px;
+            }
+
+            .skill {
+                font-size: 12px;
+                padding: 9px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="website">
+
+        <!-- HEADER -->
+        <header>
+            <span class="moon">🌙</span>
+
+            <h1>Website Bimo</h1>
+
+            <p>✦ Carilah Rumah Ternyamanmu ✦</p>
+        </header>
+
+        <!-- MENU NAVIGASI -->
+        <nav>
+            <a href="index.html">⌂ Beranda</a>
+            <a href="profil.html" class="active">✧ Profil</a>
+            <a href="kegiatan.html">✦ Kegiatan</a>
+            <a href="kontak.html">☾ Kontak</a>
+        </nav>
+
+        <!-- ISI PROFIL -->
+        <main class="profile-section">
+
+            <span class="section-label">
+                ✦ MENGENAL SAYA ✦
+            </span>
+
+            <h2>My Profile</h2>
+
+            <p class="intro">
+                Selamat datang di halaman profil saya!
+                Kenali diri saya dan dunia kreativitas saya.
+            </p>
+
+            <!-- FOTO PROFIL -->
+            <img
+                src="bimbimpropill.png"
+                alt="Foto profil Bimo Setionegoro"
+                class="profile-photo"
+            >
+
+            <!-- NAMA -->
+            <h3 class="profile-name">
+                Bimo Setionegoro
+            </h3>
+
+            <div class="profile-role">
+                🎨 Graphic Designer & Digital Artist
+            </div>
+
+            <!-- TENTANG SAYA -->
+            <section class="about-card">
+
+                <h3>🌙 Tentang Saya</h3>
+
+                <p>
+                    Halo! Nama saya Bimo Setionegoro.
+                    Saya adalah seorang desainer grafis yang
+                    tertarik pada dunia seni dan kreativitas.
+                </p>
+
+                <p>
+                    Saya memiliki kemampuan menggambar realis
+                    menggunakan teknik tradisional atau
+                    <i>traditional art</i>. Selain itu, saya juga
+                    membuat GFX, tipografi, karya menggunakan
+                    Alight Motion, dan seni digital atau
+                    <i>digital art</i>.
+                </p>
+
+                <p>
+                    Bagi saya, seni adalah cara untuk menuangkan
+                    imajinasi, mengekspresikan ide, dan menciptakan
+                    sesuatu yang memiliki ciri khas tersendiri.
+                </p>
+
+            </section>
+
+            <!-- KEAHLIAN -->
+            <section class="skills">
+
+                <h3>✨ Keahlian Saya</h3>
+
+                <div class="skill-list">
+                    <span class="skill">✏️ Realistic Drawing</span>
+                    <span class="skill">🎨 Traditional Art</span>
+                    <span class="skill">🖌️ Digital Art</span>
+                    <span class="skill">💫 GFX Design</span>
+                    <span class="skill">🔤 Typography</span>
+                    <span class="skill">🎬 Alight Motion</span>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>
+                ✦ Dibuat dengan ♥ oleh
+                <strong>bimmvdrxsn</strong> ✦
+            </p>
+
+            <p>© 2026 Website Bimo. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
+```

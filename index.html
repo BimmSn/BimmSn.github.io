@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Bimo - Starry Night</title>
+
+    <style>
+        /* ===== RESET DASAR ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            min-height: 100vh;
+            padding: 35px 15px;
+            color: #fff4c2;
+
+            /* Langit malam biru dan bintang emas */
+            background-color: #10265c;
+            background-image:
+                radial-gradient(circle at 12% 12%,
+                    #fff4a0 0 3px, #e9c94d 5px,
+                    transparent 18px),
+                radial-gradient(circle at 82% 10%,
+                    #ffe77a 0 5px, #d8b43c 7px,
+                    transparent 23px),
+                radial-gradient(circle at 35% 28%,
+                    #fff2a0 0 3px, #d8b94b 5px,
+                    transparent 19px),
+                radial-gradient(circle at 70% 45%,
+                    #ffe58a 0 3px, #d8b94b 5px,
+                    transparent 17px),
+                radial-gradient(circle at 18% 65%,
+                    #ffe77a 0 4px, #d8b94b 6px,
+                    transparent 20px),
+                repeating-radial-gradient(
+                    ellipse at 55% 25%,
+                    transparent 0 18px,
+                    rgba(115, 165, 230, 0.30) 20px 24px,
+                    transparent 27px 40px
+                ),
+                linear-gradient(
+                    160deg,
+                    #14275f,
+                    #244d91 45%,
+                    #0b1741
+                );
+
+            background-attachment: fixed;
+        }
+
+        /* ===== KOTAK UTAMA ===== */
+        .website {
+            width: 100%;
+            max-width: 1050px;
+            margin: auto;
+            overflow: hidden;
+
+            background: rgba(9, 24, 64, 0.95);
+            border: 2px solid #d9bd59;
+            border-radius: 25px;
+
+            box-shadow:
+                0 0 20px rgba(255, 220, 100, 0.3),
+                0 0 45px rgba(52, 105, 210, 0.4),
+                0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            text-align: center;
+            padding: 45px 20px;
+
+            background:
+                repeating-radial-gradient(
+                    ellipse at 50% 0%,
+                    transparent 0 25px,
+                    rgba(111, 155, 222, 0.12) 27px 31px,
+                    transparent 33px 48px
+                ),
+                linear-gradient(135deg, #152b66, #244d8a);
+
+            border-bottom: 2px solid #c7ad54;
+        }
+
+        .moon {
+            display: block;
+            font-size: 42px;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 12px #ffe77a);
+        }
+
+        header h1 {
+            color: #fff4a8;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(32px, 6vw, 52px);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+
+            /* Bayangan bercahaya */
+            text-shadow:
+                2px 3px 0 #243d77,
+                0 0 8px #ffe66d,
+                0 0 20px #ffd84d,
+                0 0 35px #d6ad32;
+        }
+
+        header p {
+            color: #e4eaff;
+            font-size: 15px;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        /* ===== MENU NAVIGASI ===== */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 18px;
+
+            background: #0a1942;
+            border-bottom: 1px solid rgba(255, 231, 122, 0.35);
+        }
+
+        nav a {
+            color: #ffe99a;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+
+            padding: 11px 19px;
+            border-radius: 25px;
+            border: 1px solid #a9944b;
+
+            transition: 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: linear-gradient(135deg, #fff0a0, #d9b642);
+            color: #10265c;
+            box-shadow: 0 0 15px rgba(255, 231, 122, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* ===== AREA KONTEN ===== */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(220px, 0.85fr);
+            gap: 25px;
+            padding: 30px;
+        }
+
+        main {
+            min-width: 0;
+        }
+
+        /* ===== KOTAK ARTIKEL ===== */
+        .article {
+            padding: 25px;
+            margin-bottom: 25px;
+
+            background: linear-gradient(
+                145deg,
+                rgba(28, 57, 117, 0.96),
+                rgba(16, 31, 75, 0.98)
+            );
+
+            border: 1px solid rgba(255, 224, 125, 0.45);
+            border-radius: 20px;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .article:hover {
+            transform: translateY(-4px);
+            border-color: #ffe77a;
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(255, 220, 100, 0.12);
+        }
+
+        .article h2 {
+            color: #ffe58a;
+            font-size: 23px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+
+            text-shadow: 0 0 10px rgba(255, 216, 91, 0.3);
+        }
+
+        .date {
+            text-align: right;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            color: #c1cde8;
+            margin-bottom: 18px;
+        }
+
+        .article p {
+            color: #e4eaff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.9;
+            text-align: justify;
+            margin-bottom: 17px;
+        }
+
+        /* ===== TOMBOL BACA SELENGKAPNYA ===== */
+        .read-more {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 11px 19px;
+
+            color: #142858;
+            background: linear-gradient(135deg, #fff0a0, #d9b642);
+            border-radius: 25px;
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+
+            transition: 0.3s ease;
+        }
+
+        .read-more:hover {
+            box-shadow: 0 0 18px #ffe77a;
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #fff8ca, #edce61);
+        }
+
+        /* ===== SIDEBAR ===== */
+        aside {
+            align-self: start;
+            padding: 23px 20px;
+
+            background: linear-gradient(145deg, #172f68, #10214b);
+            border: 1px solid #b7a14f;
+            border-radius: 20px;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        aside h3 {
+            color: #ffe58a;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+
+            border-bottom: 1px solid rgba(255, 224, 125, 0.35);
+        }
+
+        aside ol {
+            padding-left: 22px;
+        }
+
+        aside li {
+            color: #ffe58a;
+            padding: 9px 0;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        aside a {
+            color: #d5e2ff;
+            text-decoration: none;
+            line-height: 1.7;
+            transition: 0.3s;
+        }
+
+        aside a:hover {
+            color: #ffe77a;
+            text-shadow: 0 0 10px #ffe77a;
+        }
+
+        .sidebar-note {
+            margin-top: 25px;
+            padding: 15px;
+
+            color: #dbe5ff;
+            background: rgba(9, 19, 51, 0.65);
+
+            border: 1px solid rgba(255, 224, 125, 0.25);
+            border-radius: 14px;
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .sidebar-note strong {
+            color: #ffe58a;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+
+            color: #d4dcf2;
+            background: #08132f;
+            border-top: 2px solid #bba54d;
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        footer strong {
+            color: #ffe9a0;
+            text-shadow: 0 0 10px rgba(255, 220, 100, 0.5);
+        }
+
+        /* ===== TAMPILAN HP ===== */
+        @media (max-width: 700px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .website {
+                border-radius: 18px;
+            }
+
+            header {
+                padding: 35px 15px;
+            }
+
+            header h1 {
+                letter-spacing: 1px;
+            }
+
+            header p {
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+
+            nav {
+                gap: 7px;
+                padding: 15px 10px;
+            }
+
+            nav a {
+                padding: 9px 13px;
+                font-size: 12px;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                padding: 18px;
+                gap: 5px;
+            }
+
+            .article {
+                padding: 20px;
+            }
+
+            .article h2 {
+                font-size: 20px;
+            }
+
+            .article p {
+                font-size: 13px;
+            }
+
+            aside {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="website">
+
+        <!-- HEADER -->
+        <header>
+            <span class="moon">🌙</span>
+
+            <h1>Website Bimo</h1>
+
+            <p>✦ Carilah Rumah Ternyamanmu ✦</p>
+        </header>
+
+        <!-- MENU NAVIGASI -->
+        <nav>
+            <a href="index.html" class="active">⌂ Beranda</a>
+            <a href="profil.html">✧ Profil</a>
+            <a href="kegiatan.html">✦ Kegiatan</a>
+            <a href="kontak.html">☾ Kontak</a>
+        </nav>
+
+        <!-- KONTEN UTAMA DAN SIDEBAR -->
+        <div class="content-wrapper">
+
+            <main>
+
+                <!-- ARTIKEL PERTAMA -->
+                <article class="article">
+
+                    <h2>✦ Korban KM Virgo</h2>
+
+                    <div class="date">
+                        <i>Jumat, 25 September 2026</i>
+                    </div>
+
+                    <p>
+                        Operasi pencarian korban tenggelamnya KM Virgo
+                        Transport 8 di perairan Laut Jawa masih dilakukan.
+                        Sebanyak 10 jenazah kembali ditemukan petugas SAR
+                        hari ini sehingga jumlah korban yang meninggal
+                        mencapai 52 orang.
+                    </p>
+
+                    <p>
+                        Sebanyak 160 korban telah ditemukan dari total
+                        243 orang yang tercatat dalam manifes. Dari jumlah
+                        tersebut, 108 orang ditemukan selamat dan 52 orang
+                        meninggal dunia, sementara 83 orang masih dalam
+                        pencarian.
+                    </p>
+
+                    <a href="selanjutnya%201.html" class="read-more">
+                        Baca Selengkapnya ↗
+                    </a>
+
+                </article>
+
+                <!-- ARTIKEL KEDUA -->
+                <article class="article">
+
+                    <h2>✦ Penipuan Penyalur Kerja di TikTok</h2>
+
+                    <p>
+                        Puluhan pencari kerja di kawasan Tangerang dan
+                        sekitarnya diduga menjadi korban penipuan berkedok
+                        yayasan penyalur tenaga kerja setelah tergiur
+                        informasi lowongan yang ditayangkan melalui siaran
+                        langsung di TikTok.
+                    </p>
+
+                    <p>
+                        Para korban dijanjikan dapat langsung bekerja di
+                        pabrik setelah membayar sejumlah uang. Namun,
+                        setelah uang disetorkan, kepastian pekerjaan yang
+                        dijanjikan tak kunjung datang hingga kontak para
+                        korban diduga diblokir.
+                    </p>
+
+                    <p>
+                        Sedikitnya 20 korban kini telah tergabung dalam
+                        grup komunikasi dengan pola kejadian yang serupa.
+                        Total kerugian sementara ditaksir mencapai lebih
+                        dari Rp102 juta. Salah satu korban, Tatik,
+                        menceritakan kronologi yang dialaminya saat
+                        berusaha mencarikan pekerjaan untuk suaminya.
+                    </p>
+
+                    <a href="selanjutnya%202.html" class="read-more">
+                        Baca Selengkapnya ↗
+                    </a>
+
+                </article>
+
+            </main>
+
+            <!-- SIDEBAR -->
+            <aside>
+
+                <h3>☄ Tautan Eksternal</h3>
+
+                <ol>
+                    <li>
+                        <a href="https://www.instagram.com/detikcom/"
+                           target="_blank" rel="noopener noreferrer">
+                            Instagram Detikcom ↗
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.instagram.com/kompastv/"
+                           target="_blank" rel="noopener noreferrer">
+                            Instagram Kompas TV ↗
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.instagram.com/cnnindonesia/"
+                           target="_blank" rel="noopener noreferrer">
+                            Instagram CNN Indonesia ↗
+                        </a>
+                    </li>
+                </ol>
+
+                <div class="sidebar-note">
+                    ✨ <strong>Starry Night</strong><br>
+                    Di antara bintang-bintang, temukan cerita,
+                    informasi, dan inspirasi baru setiap hari.
+                </div>
+
+            </aside>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>
+                ✦ Dibuat dengan ♥ oleh
+                <strong>bimmvdrxsn</strong> ✦
+            </p>
+
+            <p>© 2026 Website Bimo. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
+```
